@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 })
 export class ContactusComponent {
 
-  mailId="airwayplacementservices@gmail.com"
-
+  mailId = "smenterprise6777@gmail.com";
+  mobile_no = "9380882191";
 }

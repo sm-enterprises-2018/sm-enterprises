@@ -1,29 +1,28 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-// import { setInterval } from 'timers';
+import { Component, OnDestroy, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css'],
 })
-export class CarouselComponent {
+export class CarouselComponent implements AfterViewInit, OnDestroy {
   currentImageIndex: number = 0;
   totalImages: number = 6;
+  intervalId!: number;
 
-  private intervalId!: number;
+  startX: number = 0;
+  endX: number = 0;
 
-  ngOnInit() {
+  ngAfterViewInit() {
     if (typeof window !== 'undefined') {
-      setInterval(() => {
+      this.intervalId = window.setInterval(() => {
         this.nextImage();
       }, 3000);
     }
   }
-  
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
@@ -36,5 +35,23 @@ export class CarouselComponent {
   prevImage() {
     this.currentImageIndex =
       (this.currentImageIndex - 1 + this.totalImages) % this.totalImages;
+  }
+
+  startTouch(event: TouchEvent) {
+    this.startX = event.touches[0].clientX;
+  }
+
+  endTouch(event: TouchEvent) {
+    this.endX = event.changedTouches[0].clientX;
+    this.handleSwipe();
+  }
+
+  handleSwipe() {
+    const swipeDistance = this.startX - this.endX;
+    if (swipeDistance > 50) {
+      this.nextImage();
+    } else if (swipeDistance < -50) {
+      this.prevImage();
+    }
   }
 }

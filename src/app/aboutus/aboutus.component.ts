@@ -10,8 +10,9 @@ import { Component } from '@angular/core';
 export class AboutusComponent {
 
 description: string = ``;
-mission: string = `To provide exceptional value and foster long-term relationships through our commitment to excellence.`;
-vision: string = `To be a leader in our industry by setting standards of quality, innovation, and trust.`;
+mission: string = `Empowering careers and businesses by delivering unmatched value, fostering lasting partnerships, and driving success through our commitment to excellence.`;
+vision: string = `To redefine the recruitment landscape by leading with innovation, setting unparalleled standards of quality, and building trust through every connection.`;
+
 
 
 }
