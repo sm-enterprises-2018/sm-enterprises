@@ -9,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  currentYear: number = new Date().getFullYear();
+  mailId: string = "smenterprise6777@gmail.com";
+
 }
